@@ -1,5 +1,5 @@
 variable "location" {
-  default = "Central India"
+  default = "East US 2"
 }
 
 variable "resource_group" {
