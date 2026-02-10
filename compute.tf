@@ -1,8 +1,8 @@
 resource "azurerm_network_interface" "nic" {
   count               = var.vm_count
   name                = "nic-${count.index}"
-  location            = var.location
-  resource_group_name = LBRG1
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "internal"
@@ -21,11 +21,11 @@ resource "azurerm_network_interface_backend_address_pool_association" "lb_attach
 resource "azurerm_windows_virtual_machine" "vm" {
   count               = var.vm_count
   name                = "webvm-${count.index}"
-  resource_group_name = LBRG1
-  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
   size                = "Standard_D2s_v3"
   admin_username      = "Student"
-  admin_password      = "Student@1234"   # (change in real projects)
+  admin_password      = "Student@1234!"
 
   network_interface_ids = [
     azurerm_network_interface.nic[count.index].id
