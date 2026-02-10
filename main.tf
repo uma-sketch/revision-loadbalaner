@@ -40,3 +40,7 @@ resource "azurerm_lb_rule" "http_rule" {
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.backend_pool.id]
   probe_id                       = azurerm_lb_probe.http_probe.id
 }
+# FORCE UPDATE TEST
+output "test_cloud_sync" {
+  value = "Terraform Cloud picked latest code"
+}
